@@ -2,8 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatPrice } from "@/lib/format";
 import { Medallion } from "./brand";
-import { RowReveal } from "./motion-primitives";
+import { RowReveal, StickyHorizontalPhotos } from "./motion-primitives";
 import type { Service } from "@/lib/supabase/types";
+
+const SERVICE_PHOTOS = [
+  { src: "/gallery/corte-02.jpg", alt: "Barba feita na Blend", label: "Barba" },
+  { src: "/gallery/corte-01.jpg", alt: "Corte feito na Blend", label: "Cabelo" },
+];
 
 interface ServicesSectionProps {
   services: Service[];
@@ -30,7 +35,9 @@ function spokenDuration(minutes: number) {
 // No hover/foco a linha enche de royal por baixo.
 export function ServicesSection({ services }: ServicesSectionProps) {
   return (
-    <section id="servicos" className="on-paper relative overflow-hidden bg-paper text-ink">
+    <section id="servicos" className="on-paper relative bg-paper text-ink">
+      {/* overflow visível de propósito: a faixa de fotos do celular usa position:sticky,
+          que não funciona se algum ancestral tiver overflow-hidden. */}
       <div className="relative mx-auto grid max-w-[1440px] gap-12 px-5 py-16 md:px-12 lg:grid-cols-12 lg:gap-16 lg:py-28">
         <div className="lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
           <h2 className="font-display text-[3.2rem] leading-[0.95] text-royal-ink sm:text-7xl">
@@ -39,15 +46,20 @@ export function ServicesSection({ services }: ServicesSectionProps) {
           <p className="mt-5 max-w-xs leading-relaxed text-ink/60">
             O medalhão mostra a duração. Toque em um serviço para reservar.
           </p>
-          {/* Fotos reais enviadas pelo cliente (2026-10-06) — trabalho de barba e de cabelo. */}
-          <div className="mt-8 grid max-w-sm grid-cols-2 gap-3">
-            <div className="relative aspect-[4/5] overflow-hidden">
-              <Image src="/gallery/corte-02.jpg" alt="Barba feita na Blend" fill sizes="200px" className="object-cover" />
-            </div>
-            <div className="relative aspect-[4/5] overflow-hidden">
-              <Image src="/gallery/corte-01.jpg" alt="Corte feito na Blend" fill sizes="200px" className="object-cover" />
-            </div>
+          {/* Fotos reais enviadas pelo cliente (2026-10-06) — trabalho de barba e de cabelo.
+              No celular, vira uma faixa fixa que troca de foto com o scroll (ver nota em
+              StickyHorizontalPhotos); no desktop, as duas lado a lado como sempre foi. */}
+          <div className="mt-8 hidden max-w-sm grid-cols-2 gap-3 md:grid">
+            {SERVICE_PHOTOS.map((photo) => (
+              <div key={photo.src} className="relative aspect-[4/5] overflow-hidden">
+                <Image src={photo.src} alt={photo.alt} fill sizes="200px" className="object-cover" />
+              </div>
+            ))}
           </div>
+        </div>
+
+        <div className="-mx-5 mt-2 md:hidden">
+          <StickyHorizontalPhotos photos={SERVICE_PHOTOS} />
         </div>
 
         <div className="lg:col-span-8">
@@ -73,9 +85,9 @@ export function ServicesSection({ services }: ServicesSectionProps) {
                       {compactDuration(service.duration_minutes)}
                     </Medallion>
 
-                    <div className="relative">
-                      <div className="flex items-baseline gap-3">
-                        <h3 className="font-heading text-[1.8rem] leading-none text-ink transition-colors duration-300 group-hover:text-white md:text-[2.3rem]">
+                    <div className="relative min-w-0">
+                      <div className="flex items-baseline gap-2 sm:gap-3">
+                        <h3 className="min-w-0 font-heading text-[1.5rem] leading-none text-ink transition-colors duration-300 group-hover:text-white sm:text-[1.8rem] md:text-[2.3rem]">
                           {service.name}
                           <span className="sr-only">, {spokenDuration(service.duration_minutes)}</span>
                         </h3>
@@ -83,7 +95,7 @@ export function ServicesSection({ services }: ServicesSectionProps) {
                           aria-hidden="true"
                           className="min-w-4 flex-1 -translate-y-1 border-b border-dotted border-royal-ink/30 transition-colors duration-300 group-hover:border-white/50"
                         />
-                        <span className="font-heading text-[1.8rem] leading-none whitespace-nowrap text-royal-ink tabular-nums transition-colors duration-300 group-hover:text-white md:text-[2.3rem]">
+                        <span className="shrink-0 font-heading text-[1.5rem] leading-none whitespace-nowrap text-royal-ink tabular-nums transition-colors duration-300 group-hover:text-white sm:text-[1.8rem] md:text-[2.3rem]">
                           {formatPrice(service.price)}
                         </span>
                       </div>

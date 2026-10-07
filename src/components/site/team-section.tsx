@@ -1,17 +1,36 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { RazorGlyph } from "./brand";
-import { IrisReveal } from "./motion-primitives";
+import { motion, useReducedMotion } from "framer-motion";
+import { EASE_OUT } from "@/lib/motion";
 import type { Staff } from "@/lib/supabase/types";
 
 interface TeamSectionProps {
   staff: Staff[];
 }
 
-// Retratos em moldura circular. Sem foto real, o slot mostra a navalha em
-// marca d'água + "foto a enviar" — placeholder explícito, nunca foto de
-// banco. Fotos reais entram sem filtro.
+// Ícone de perfil genérico (cabeça + ombros) — o mesmo tipo de placeholder
+// que WhatsApp/Google usam quando não há foto: sinaliza "sem foto" de
+// forma universal, sem tentar parecer decoração da marca.
+function PersonPlaceholder({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 100 100" className={className} fill="currentColor">
+      <circle cx="50" cy="38" r="18" />
+      <path d="M50 60c-24 0-38 14-38 32v8h76v-8c0-18-14-32-38-32Z" />
+    </svg>
+  );
+}
+
+// Retratos em moldura circular. Sem foto real, o slot mostra um ícone de
+// perfil genérico — placeholder explícito, nunca foto de banco. Fotos reais
+// entram sem filtro. Entrada por fade simples (não por scroll): a versão
+// anterior usava revelação por clip-path disparada só quando o elemento
+// entrava na viewport, e em alguns layouts isso nunca disparava — o
+// retrato ficava clipado em 0% pra sempre (invisível). Fade garantido no
+// mount é mais seguro que uma animação que pode nunca disparar.
 export function TeamSection({ staff }: TeamSectionProps) {
+  const reduce = useReducedMotion();
   if (staff.length === 0) return null;
 
   return (
@@ -32,10 +51,12 @@ export function TeamSection({ staff }: TeamSectionProps) {
               key={person.id}
               className={`w-[calc(50%-1.25rem)] sm:w-[220px] md:w-[240px] ${i % 2 === 1 ? "md:mt-14" : ""}`}
             >
-              <IrisReveal
-                index={i}
+              <motion.div
                 className="relative mx-auto aspect-square w-full"
                 style={{ ["--medallion-gap" as string]: "var(--paper)" }}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: reduce ? 0.001 : 0.5, delay: Math.min(i, 4) * 0.08, ease: EASE_OUT }}
               >
                 <div className="medallion absolute inset-0 overflow-hidden text-royal-ink">
                   {person.photo_url ? (
@@ -44,16 +65,13 @@ export function TeamSection({ staff }: TeamSectionProps) {
                     <div
                       role="img"
                       aria-label={`Espaço reservado para foto de ${person.name}`}
-                      className="relative h-full w-full bg-ink"
+                      className="relative flex h-full w-full items-center justify-center bg-steel"
                     >
-                      <RazorGlyph crossed className="absolute inset-[16%] h-auto w-auto text-royal/25" />
-                      <span className="meta absolute inset-x-0 bottom-[10%] text-center text-[0.72rem] text-fog italic">
-                        foto a enviar
-                      </span>
+                      <PersonPlaceholder className="h-[55%] w-[55%] text-white/25" />
                     </div>
                   )}
                 </div>
-              </IrisReveal>
+              </motion.div>
 
               <div className="mt-7">
                 <h3 className="font-heading text-[2.1rem] leading-none text-ink">
