@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { createAppointment, getAvailableSlots } from "@/app/agendar/actions";
 import { EASE } from "@/lib/motion";
@@ -159,9 +159,19 @@ export function BookingForm({
   // step só entra no DOM depois que a saída do anterior termina, então um
   // useEffect disparado por `state.step` rodava cedo demais (o ref ainda
   // apontava pro nó antigo/nulo) e o foco nunca se movia de verdade.
-  function focusStepHeading(node: HTMLHeadingElement | null) {
+  //
+  // BUG CORRIGIDO (2026-10-07): sem useCallback, essa função nascia de novo
+  // em TODO re-render do formulário (cada letra digitada em qualquer campo
+  // já dispara um re-render via useReducer). React trata ref callback com
+  // identidade nova como "mudou", então desanexa e reanexa o ref a cada
+  // tecla — e `node.focus()` rodava de novo, roubando o foco do campo onde
+  // a pessoa estava digitando e jogando pro heading. Com useCallback(, []),
+  // a função só muda de identidade quando o componente desmonta de verdade,
+  // então só foca quando o heading é um nó novo (troca de step), como era
+  // a intenção original.
+  const focusStepHeading = useCallback((node: HTMLHeadingElement | null) => {
     node?.focus();
-  }
+  }, []);
 
   function setField(field: keyof BookingFormData, value: string | null) {
     dispatch({ type: "SET_FIELD", field, value });
