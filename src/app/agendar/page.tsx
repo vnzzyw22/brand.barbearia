@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BookingForm } from "@/components/booking/booking-form";
-import { BlendMark, RazorGlyph } from "@/components/site/brand";
+import { BlendLogo, RazorGlyph } from "@/components/site/brand";
 import { getActiveServices, getActiveStaff } from "@/lib/supabase/queries";
 
 export const metadata: Metadata = { title: "Reservar horário" };
@@ -20,7 +20,7 @@ export default async function AgendarPage(props: PageProps<"/agendar">) {
 
       <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-5 py-5 md:px-8">
         <Link href="/" className="flex items-center gap-3" aria-label="Blend Barber Club — voltar ao início">
-          <BlendMark />
+          <BlendLogo size={40} priority />
         </Link>
         <Link href="/" className="flex min-h-11 items-center font-semibold text-fog underline decoration-royal/40 transition-colors hover:text-royal-soft">
           Voltar ao início

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import { EASE } from "@/lib/motion";
-import { BlendMark } from "./brand";
+import { BlendLogo } from "./brand";
 
 const links = [
   { href: "/#servicos", label: "Serviços" },
@@ -41,7 +41,7 @@ export function Navbar() {
         className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 md:h-[72px] md:px-12"
       >
         <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <BlendMark />
+          <BlendLogo size={44} priority />
         </Link>
 
         <ul className="hidden items-center gap-9 md:flex">

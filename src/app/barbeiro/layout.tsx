@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { logout } from "@/app/admin/(painel)/actions";
 import { NoAccess } from "@/components/account/no-access";
-import { BlendMark } from "@/components/site/brand";
+import { BlendLogo } from "@/components/site/brand";
 import { getAccess } from "@/lib/auth/access";
 import { getBarberMe } from "@/lib/supabase/commission-queries";
 
@@ -29,7 +29,7 @@ export default async function BarbeiroLayout({ children }: { children: React.Rea
       <header className="border-b border-white/10 bg-steel">
         <div className="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3">
           <span className="flex items-center gap-3">
-            <BlendMark />
+            <BlendLogo size={32} />
             <span className="label text-[0.58rem] text-royal-soft">{me?.name ?? "Minha área"}</span>
           </span>
           <form action={logout}>

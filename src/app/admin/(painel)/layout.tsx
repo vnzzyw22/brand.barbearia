@@ -1,4 +1,4 @@
-import { BlendMark } from "@/components/site/brand";
+import { BlendLogo } from "@/components/site/brand";
 import { redirect } from "next/navigation";
 import { AdminNav } from "@/components/admin/admin-nav";
 import { NoAccess } from "@/components/account/no-access";
@@ -28,7 +28,7 @@ export default async function PainelLayout({
     <div className="flex min-h-full flex-1 flex-col bg-brand-ink md:flex-row">
       <aside className="flex shrink-0 flex-col border-b border-white/10 bg-brand-ink md:w-56 md:border-b-0 md:border-r">
         <div className="px-4 py-4">
-          <BlendMark />
+          <BlendLogo size={40} />
           <p className="label mt-1.5 text-[0.58rem] text-royal-soft">Painel</p>
         </div>
         <AdminNav />

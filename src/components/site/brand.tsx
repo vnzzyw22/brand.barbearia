@@ -2,6 +2,36 @@
 // DiamondRule) foi removida daqui no rebrand de 2026-10-06 — nada no site
 // usa mais essas peças. Histórico em git caso precise recuperar algo.
 
+import Image from "next/image";
+
+/**
+ * Logo oficial da Blend (arquivo real entregue pelo cliente em 2026-10-07,
+ * `public/brand/logo.png`) — selo quadrado em azul royal com o poste de
+ * barbeiro, as navalhas e o wordmark. Usar sempre que precisar da marca
+ * completa (Navbar, Footer, login/admin). `BlendMark`/`BlendBadge` abaixo
+ * são a reconstrução tipográfica anterior — ficam só de referência/fallback.
+ */
+export function BlendLogo({
+  size = 40,
+  className,
+  priority,
+}: {
+  size?: number;
+  className?: string;
+  priority?: boolean;
+}) {
+  return (
+    <Image
+      src="/brand/logo.png"
+      alt="Blend Barber Club"
+      width={size}
+      height={size}
+      priority={priority}
+      className={className}
+    />
+  );
+}
+
 /**
  * Wordmark Blend: tipográfico, sem arquivo de logo (o cliente ainda não
  * entregou um — ver BLEND_DESIGN.md). "BLEND" em Archivo 900 + "BARBER CLUB"

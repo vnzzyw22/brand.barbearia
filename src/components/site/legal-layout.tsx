@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BlendMark } from "./brand";
+import { BlendLogo } from "./brand";
 
 // Layout das páginas legais (privacidade, cookies, termos): leitura confortável
 // (coluna de ~70 caracteres), mesmo cabeçalho de marca do agendamento.
@@ -16,7 +16,7 @@ export function LegalLayout({
     <div className="flex flex-1 flex-col bg-ink text-white">
       <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-5 py-5 md:px-8">
         <Link href="/" className="flex items-center gap-3" aria-label="Blend Barber Club — voltar ao início">
-          <BlendMark />
+          <BlendLogo size={40} priority />
         </Link>
         <Link href="/" className="flex min-h-11 items-center font-semibold text-fog underline decoration-royal/40 transition-colors hover:text-royal-soft">
           Voltar ao início

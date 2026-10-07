@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { EXTRA_PHONES } from "@/lib/brand-contacts";
 import { getWhatsappLink } from "@/lib/whatsapp";
-import { BlendBadge, BlendMark } from "./brand";
+import { BlendLogo } from "./brand";
 import type { BusinessSettings, Service } from "@/lib/supabase/types";
 
 interface FooterProps {
@@ -36,8 +36,7 @@ export function Footer({ business, services }: FooterProps) {
 
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div className="flex items-center gap-4 md:col-span-2 lg:col-span-1">
-            <BlendBadge className="h-16 w-16 shrink-0" />
-            <BlendMark size="lg" />
+            <BlendLogo size={88} />
           </div>
 
           <div>
