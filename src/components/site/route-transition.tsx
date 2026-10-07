@@ -40,7 +40,7 @@ export function RouteTransition() {
       {active && (
         <motion.div
           aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-[200] origin-left border-r-2 border-gold bg-teal-deep"
+          className="pointer-events-none fixed inset-0 z-[200] origin-left border-r-2 border-royal-soft bg-royal"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: [0, 1, 1, 0] }}
           exit={{ opacity: 0 }}

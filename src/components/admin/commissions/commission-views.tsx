@@ -84,7 +84,7 @@ export function CommissionReport({ rows, periodQuery }: { rows: CommissionReport
 
       <ul className="flex flex-col gap-3 md:hidden">
         {rows.map((r) => (
-          <li key={r.staff_id} className="border border-white/10 bg-teal-deep p-4">
+          <li key={r.staff_id} className="border border-white/10 bg-steel p-4">
             <div className="flex items-baseline justify-between gap-3">
               <p className="font-nav text-sm font-bold tracking-widest text-white uppercase">{r.staff_name}</p>
               <Link href={`/admin/comissoes?${periodQuery}&pf=${r.staff_id}#detalhe`} className="font-nav text-xs font-bold tracking-widest text-brand-red uppercase">
@@ -159,7 +159,7 @@ export function CommissionDetail({ rows, methods }: { rows: CommissionRow[]; met
 
       <ul className="flex flex-col gap-3 md:hidden">
         {rows.map((r) => (
-          <li key={r.commission_id} className="border border-white/10 bg-teal-deep p-4">
+          <li key={r.commission_id} className="border border-white/10 bg-steel p-4">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="text-sm font-medium text-white">{r.description}</p>

@@ -67,7 +67,7 @@ export function IncomeForm({ categories, methods }: { categories: FinancialCateg
   }
 
   return (
-    <form onSubmit={submit} className="flex flex-col gap-4 border border-white/10 bg-teal-deep p-4">
+    <form onSubmit={submit} className="flex flex-col gap-4 border border-white/10 bg-steel p-4">
       <div className="flex flex-wrap gap-3">
         <Field label="Descrição" className="min-w-56 flex-[2]">
           <input required value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Ex.: Pomada modeladora" className={fieldClass} />

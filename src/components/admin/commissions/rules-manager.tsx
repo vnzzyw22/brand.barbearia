@@ -71,7 +71,7 @@ export function RulesManager({ rules, staff, services }: { rules: CommissionRule
         </ul>
       )}
 
-      <form onSubmit={add} className="flex flex-wrap items-end gap-3 border border-white/10 bg-teal-deep p-4">
+      <form onSubmit={add} className="flex flex-wrap items-end gap-3 border border-white/10 bg-steel p-4">
         <label className="flex min-w-40 flex-1 flex-col gap-1.5">
           <span className={labelClass}>Barbeiro</span>
           <select value={staffId} onChange={(e) => setStaffId(e.target.value)} className={fieldClass}>

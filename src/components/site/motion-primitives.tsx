@@ -17,7 +17,7 @@ function useDur(normal: number) {
 }
 
 /** Hairline da marca que se desenha da esquerda para a direita. */
-export function RuleDraw({ delay = 0, className = "bg-teal/25" }: { delay?: number; className?: string }) {
+export function RuleDraw({ delay = 0, className = "bg-royal-ink/20" }: { delay?: number; className?: string }) {
   const duration = useDur(0.9);
   return (
     <motion.span
