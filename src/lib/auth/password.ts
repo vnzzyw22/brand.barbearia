@@ -1,5 +1,5 @@
 // Regras da senha do painel (ele mexe em dinheiro). Não dependem só da regra do Supabase.
-const COMMON = ["123456", "12345678", "123456789", "1234567890", "senha", "password", "qwerty", "fratelli", "barbearia", "111111"];
+const COMMON = ["123456", "12345678", "123456789", "1234567890", "senha", "password", "qwerty", "blend", "barbearia", "111111"];
 
 export const PASSWORD_MIN = 10;
 

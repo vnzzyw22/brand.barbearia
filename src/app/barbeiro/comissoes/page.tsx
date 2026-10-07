@@ -34,15 +34,15 @@ export default async function BarbeiroComissoesPage(props: PageProps<"/barbeiro/
         </div>
       ) : (
         <section aria-label="Resumo" className="mt-6 grid grid-cols-2 gap-3">
-          <div className="border border-white/10 bg-teal-deep p-4">
+          <div className="border border-white/10 bg-steel p-4">
             <p className="text-xs text-white/50">Atendimentos</p>
             <p className="text-xl font-bold tabular-nums text-white">{summary.appointments}</p>
           </div>
-          <div className="border border-white/10 bg-teal-deep p-4">
+          <div className="border border-white/10 bg-steel p-4">
             <p className="text-xs text-white/50">Faturamento gerado</p>
             <p className="text-xl font-bold tabular-nums text-white">{formatCents(summary.revenue_cents)}</p>
           </div>
-          <div className="col-span-2 border border-white/10 bg-teal-deep p-4">
+          <div className="col-span-2 border border-white/10 bg-steel p-4">
             <p className="text-xs text-white/50">Comissão do período</p>
             <p className="text-2xl font-bold tabular-nums text-white">{formatCents(summary.commission_cents)}</p>
             <p className="mt-1 text-xs text-white/50">
@@ -60,7 +60,7 @@ export default async function BarbeiroComissoesPage(props: PageProps<"/barbeiro/
           ) : (
             <ul className="flex flex-col gap-2">
               {rows.map((r, i) => (
-                <li key={`${r.competence_date}-${i}`} className="border border-white/10 bg-teal-deep px-4 py-3">
+                <li key={`${r.competence_date}-${i}`} className="border border-white/10 bg-steel px-4 py-3">
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
                       <p className="truncate text-sm font-medium text-white">{r.description}</p>

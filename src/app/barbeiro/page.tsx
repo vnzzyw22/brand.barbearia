@@ -47,7 +47,7 @@ export default async function BarbeiroAgendaPage() {
       <p className={pageSubtitleClass}>Seus atendimentos dos próximos 14 dias.</p>
 
       {summary && (
-        <section aria-label="Resumo do mês" className="mt-6 border border-white/10 bg-teal-deep p-4">
+        <section aria-label="Resumo do mês" className="mt-6 border border-white/10 bg-steel p-4">
           <p className="font-nav text-[11px] font-bold tracking-widest text-white/50 uppercase">Este mês</p>
           <dl className="mt-3 grid grid-cols-3 gap-3">
             <div>
@@ -85,7 +85,7 @@ export default async function BarbeiroAgendaPage() {
                 {items.map((a) => {
                   const st = STATUS[a.status] ?? { label: a.status, tone: "neutral" as const };
                   return (
-                    <li key={a.appointment_id} className="flex items-center gap-4 border border-white/10 bg-teal-deep px-4 py-3">
+                    <li key={a.appointment_id} className="flex items-center gap-4 border border-white/10 bg-steel px-4 py-3">
                       <span className="w-14 shrink-0 text-lg font-bold tabular-nums text-white">{localTime(a.starts_at)}</span>
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-sm font-medium text-white">{a.service_name ?? "Serviço"}</span>

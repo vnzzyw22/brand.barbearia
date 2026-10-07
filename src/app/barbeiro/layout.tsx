@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { logout } from "@/app/admin/(painel)/actions";
 import { NoAccess } from "@/components/account/no-access";
-import { Emblem } from "@/components/site/brand";
+import { BlendMark } from "@/components/site/brand";
 import { getAccess } from "@/lib/auth/access";
 import { getBarberMe } from "@/lib/supabase/commission-queries";
 
@@ -26,14 +26,11 @@ export default async function BarbeiroLayout({ children }: { children: React.Rea
 
   return (
     <div className="flex min-h-screen flex-col bg-brand-ink">
-      <header className="border-b border-gold/20 bg-teal-ink">
+      <header className="border-b border-white/10 bg-steel">
         <div className="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3">
-          <span className="flex items-center gap-2.5">
-            <Emblem className="h-8 w-8" />
-            <span className="flex flex-col leading-none">
-              <span className="font-display text-base font-bold tracking-[0.12em] text-ivory uppercase">Fratelli</span>
-              <span className="label mt-1 text-[0.58rem] text-gold">{me?.name ?? "Minha área"}</span>
-            </span>
+          <span className="flex items-center gap-3">
+            <BlendMark />
+            <span className="label text-[0.58rem] text-royal-soft">{me?.name ?? "Minha área"}</span>
           </span>
           <form action={logout}>
             <button type="submit" className="px-2 py-2 font-nav text-xs font-bold tracking-widest text-white/60 uppercase hover:text-brand-red">

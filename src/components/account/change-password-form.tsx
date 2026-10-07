@@ -11,7 +11,7 @@ export function ChangePasswordForm({ email }: { email: string | null }) {
   const [state, action, pending] = useActionState(changePassword, initial);
 
   return (
-    <form action={action} className="flex max-w-md flex-col gap-4 border border-white/10 bg-teal-deep p-4">
+    <form action={action} className="flex max-w-md flex-col gap-4 border border-white/10 bg-steel p-4">
       {email && (
         <p className="text-sm text-white/50">
           Conta: <strong className="text-white/80">{email}</strong>
