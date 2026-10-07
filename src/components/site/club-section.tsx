@@ -40,7 +40,7 @@ export function ClubSection() {
 
       <div className="relative mx-auto max-w-[1440px] px-5 pt-20 pb-44 md:px-12 md:pt-32 md:pb-80">
         <TitleReveal
-          className="max-w-4xl font-display text-[2.9rem] leading-[1.12] sm:text-7xl lg:text-[5.5rem]"
+          className="max-w-4xl font-display text-[2.2rem] leading-[1.12] sm:text-7xl lg:text-[5.5rem]"
           lines={["Aqui, barbearia", "é um clube."]}
           lineClassName={["", "text-royal-soft"]}
         />

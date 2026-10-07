@@ -209,6 +209,16 @@ h2,
 h3 {
   text-wrap: balance;
 }
+/* Rede de segurança: título/label grande com uma palavra só (ex.: "barbearia",
+   "acabamento") não deve vazar ou cortar na borda da tela — quebra a palavra
+   em vez de só estourar o container. */
+h1,
+h2,
+h3,
+.font-display,
+.font-heading {
+  overflow-wrap: break-word;
+}
 /* Âncoras não podem ficar sob o header fixo (64px mobile / 72px desktop) */
 [id] {
   scroll-margin-top: 4.5rem;

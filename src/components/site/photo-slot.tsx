@@ -19,8 +19,8 @@ export function PhotoSlot({
     >
       <RazorGlyph crossed className="absolute inset-[22%] h-auto w-auto text-royal/15" />
       <span aria-hidden="true" className="absolute inset-2.5 border border-white/15" />
-      <p className="meta absolute bottom-5 left-5 text-white">
-        <span className="block font-heading text-2xl leading-none">{label}</span>
+      <p className="meta absolute bottom-5 left-5 right-5 text-white">
+        <span className="block font-heading text-xl leading-tight break-words sm:text-2xl">{label}</span>
         <span className="text-fog italic">foto a enviar</span>
       </p>
     </div>
